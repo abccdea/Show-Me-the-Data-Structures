@@ -65,4 +65,4 @@ parent.add_group(child)
 dirs = Directory()
 print(dirs.is_user_in_group("Not a child",sub_child)) #prints False since user not in group
 print(dirs.is_user_in_group("sub_child_user",sub_child)) #prints True since user in group
-print(dirs.is_user_in_group("sub_child_ser",parent)) #prints False due to a cyclic loop
+print(dirs.is_user_in_group("sub_child_user",parent)) #prints True

@@ -15,27 +15,12 @@ class LRU_Cache(object):
             self.cache_deque.appendleft(key)
             return self.cache_dict.get(key)
         
-        
-        
-        
-
-    def set(self, key, value):
-    	if(self.capacity==0):
-    		print("Cannot add. Cache has empty capacity")
-    		return
-    	if(self.cache_dict.get(key) is None):    		
-    		if(len(self.cache_deque)==self.capacity):
-	    		val= self.cache_deque.pop()
-   	 		self.cache_dict.pop(val)
-    			self.cache_dict[key]=value
-    			self.cache_deque.appendleft(key)
-    		else:
-    			self.cache_dict[key]=value
-    			self.cache_deque.appendleft(key)
-    	else:
-    		self.cache_dict[key]=value
-    		self.cache_deque.remove(key)
-    		self.cache_deque.appendleft(key)
+	def set(self, key, value):
+		# Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item.
+		if len(self.cache_order) >= self.cache_cap:
+			del self.cache_val[self.cache_order.popleft()]
+		self.cache_order.append(key)
+		self.cache_val[key] = value
             
             
             
