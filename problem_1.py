@@ -2,7 +2,7 @@ from collections import deque
 
 class LRU_Cache(object):
 
-    def __init__(self, capacity=5):
+    def __init__(self, capacity):
        # Initialize class variables
        self.cache_cap = capacity
        self.cache_val = {}
@@ -27,41 +27,23 @@ class LRU_Cache(object):
 '''
 For testing
 '''
-# our_cache = LRU_Cache(2)
-
-# our_cache.set(1, 1)
-# our_cache.set(2, 2)
-# our_cache.set(3, 2)
-# print(our_cache.cache_val)
-# print(our_cache.get(1))       # returns -1
-# print(our_cache.get(2))       # returns 2
-# print(our_cache.get(None))    # return -1
-our_cache = LRU_Cache()
-
+print("Test case 1:")
+our_cache = LRU_Cache(2)
 our_cache.set(1, 1)
-
 our_cache.set(2, 2)
-our_cache.set(3, 3)
-our_cache.set(4, 4)
-
-
-print(our_cache.get(1))      
-print(our_cache.get(2))      
-print(our_cache.get(9))     
-
-our_cache.set(5, 5)
-our_cache.set(1, 1)
-our_cache.set(6, 6)
-
-print(our_cache.get(3))      
-
-print(our_cache.get(2))       
-our_cache.set(7, 7)
-our_cache.set(8, 8)
-print(our_cache.get(1))      
-print(our_cache.get(6))      
-print(our_cache.get(5))       
-print(our_cache.get(0))       
-
+our_cache.set(3, 2)
+print(our_cache.cache_val)
+print(our_cache.get(1))       # returns -1
+print(our_cache.get(2))       # returns 2
+print(our_cache.get(None))    # return -1      
+print("Test case 2:")
 empty_cache = LRU_Cache(0)
-empty_cache.set(1, 1)	
+empty_cache.set(1, 1)    # returns Cannot add. Cache has empty capacity
+empty_cache.get(1)
+print("Test case 3:")
+update_cache = LRU_Cache(2)
+update_cache.set(1, 1)
+update_cache.set(2, 2)
+update_cache.set(1, 11)
+print(update_cache.get(1))       # returns 11
+print(update_cache.get(2))       # returns 2
